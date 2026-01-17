@@ -2,7 +2,7 @@
 import spacy
 from PyPDF2 import PdfReader
 
-# Load spaCy model
+# Load spaCy English model
 nlp = spacy.load("en_core_web_sm")
 
 # Skill database
@@ -14,67 +14,36 @@ SKILLS_DB = [
     "data analysis"
 ]
 
+# Extract text from PDF
 def extract_text_from_pdf(pdf_file):
     reader = PdfReader(pdf_file)
     text = ""
     for page in reader.pages:
-        if page.extract_text():
-            text += page.extract_text()
+        page_text = page.extract_text()
+        if page_text:
+            text += page_text
     return text.lower()
 
+# Extract skills from text
 def extract_skills(text):
-    found_skills = []
+    found_skills = set()  # Use set for easy intersection/difference
     for skill in SKILLS_DB:
         if skill in text:
-            found_skills.append(skill)
-    return list(set(found_skills))
+            found_skills.add(skill)
+    return found_skills  # return as set
 
+# Match resume skills with job description
 def match_job_description(resume_text, job_description):
+    # Extract skills from resume and job description
     resume_skills = extract_skills(resume_text)
     job_skills = extract_skills(job_description.lower())
 
-    matched_skills = list(set(resume_skills) & set(job_skills))
-    missing_skills = list(set(job_skills) - set(resume_skills))
+    # Calculate matched and missing skills
+    matched_skills = resume_skills & job_skills       # set intersection
+    missing_skills = job_skills - resume_skills      # set difference
 
-    return matched_skills, missing_skills
-
-import PyPDF2
-import spacy
-
-nlp = spacy.load("en_core_web_sm")
-
-SKILLS_DB = [
-    "python", "java", "c", "c++", "sql",
-    "html", "css", "javascript", "react",
-    "node", "django", "flask",
-    "machine learning", "deep learning",
-    "data analysis"
-]
-
-def extract_text_from_pdf(pdf_file):
-    reader = PyPDF2.PdfReader(pdf_file)
-    text = ""
-    for page in reader.pages:
-        text += page.extract_text()
-    return text.lower()
-
-def extract_skills(text):
-    skills = set()
-    for skill in SKILLS_DB:
-        if skill in text:
-            skills.add(skill)
-    return skills
-
-def match_job_description(resume_skills, job_description):
-    job_skills = extract_skills(job_description.lower())
-
-    matched_skills = resume_skills.intersection(job_skills)
-    missing_skills = job_skills - resume_skills
-
-    if job_skills:
-        match_percentage = (len(matched_skills) / len(job_skills)) * 100
-    else:
-        match_percentage = 0
+    # Optional: calculate match percentage
+    match_percentage = (len(matched_skills) / len(job_skills)) * 100 if job_skills else 0
 
     return match_percentage, matched_skills, missing_skills
 
