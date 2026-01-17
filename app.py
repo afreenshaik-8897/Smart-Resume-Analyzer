@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import streamlit as st
 from resume_parser import (
     extract_text_from_pdf,
@@ -32,7 +32,6 @@ if uploaded_file is not None:
 
         st.subheader("❌ Missing Skills")
         st.write(missing)
-=======
 import streamlit as st
 from resume_parser import (
     extract_text_from_pdf,
@@ -79,4 +78,3 @@ if uploaded_file and job_desc:
             )
     else:
         st.write("No missing skills 🎉")
->>>>>>> 2a7453a101c9de90c91bde5bd4e23a1ca6932773

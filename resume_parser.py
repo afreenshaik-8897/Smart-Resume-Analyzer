@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import spacy
 from PyPDF2 import PdfReader
 
@@ -37,7 +37,7 @@ def match_job_description(resume_text, job_description):
     missing_skills = list(set(job_skills) - set(resume_skills))
 
     return matched_skills, missing_skills
-=======
+
 import PyPDF2
 import spacy
 
@@ -77,4 +77,4 @@ def match_job_description(resume_skills, job_description):
         match_percentage = 0
 
     return match_percentage, matched_skills, missing_skills
->>>>>>> 2a7453a101c9de90c91bde5bd4e23a1ca6932773
+

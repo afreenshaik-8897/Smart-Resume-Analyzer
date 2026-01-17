@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 # 📄 Smart Resume Analyzer (Python + NLP)
 
 A web-based application that analyzes a resume and compares it with a job description
@@ -31,8 +31,8 @@ SmartResumeAnalyzer/
 3. Install dependencies
 4. Run the app
 
-```bash
-=======
+
+
 # 📄 Smart Resume Analyzer (Python + NLP)
 
 A web-based application that analyzes a resume and compares it with a job description
@@ -65,6 +65,3 @@ SmartResumeAnalyzer/
 3. Install dependencies
 4. Run the app
 
-```bash
->>>>>>> 2a7453a101c9de90c91bde5bd4e23a1ca6932773
-streamlit run app.py
