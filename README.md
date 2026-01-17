@@ -65,3 +65,11 @@ SmartResumeAnalyzer/
 3. Install dependencies
 4. Run the app
 
+## 📸 Project Screenshots
+
+### Resume Analysis Result
+![Result](screenshot11/upload_resume.png)
+
+### Match Percentage
+![Match](screenshot11/analysis_result.png)
+
